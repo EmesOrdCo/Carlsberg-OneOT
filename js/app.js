@@ -188,10 +188,15 @@
     globe.height(window.innerHeight);
   });
 
-  // Loading screen
-  setTimeout(() => {
-    document.getElementById("loading-screen").classList.add("hidden");
-  }, 2200);
+  // Loading screen — wait for globe texture to load
+  const textureCheck = setInterval(() => {
+    const canvas = container.querySelector("canvas");
+    if (canvas) {
+      clearInterval(textureCheck);
+      setTimeout(() => document.getElementById("loading-screen").classList.add("hidden"), 800);
+    }
+  }, 300);
+  setTimeout(() => document.getElementById("loading-screen").classList.add("hidden"), 8000);
 
   // Stop auto-rotate when user interacts
   container.addEventListener("mousedown", () => {

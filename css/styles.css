@@ -413,8 +413,10 @@ html, body {
 
 /* === Responsive === */
 @media (max-width: 900px) {
-  .detail-panel { width: 320px; }
+  .detail-panel { width: 100%; }
   #app-header { padding: 12px 16px; flex-direction: column; gap: 10px; }
   .site-counter { display: none; }
-  .search-container { width: calc(100% - 32px); top: auto; bottom: 70px; }
+  .search-container { width: calc(100% - 32px); top: auto; bottom: 28px; left: 50%; transform: translateX(-50%); }
+  .start-tour-btn { bottom: 76px; }
+  .legend { bottom: 130px; }
 }
