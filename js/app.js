@@ -23,6 +23,7 @@
 
   window._globe = globe;
 
+
   let currentAltitude = 2.5;
 
   function dynamicRadius(d) {
