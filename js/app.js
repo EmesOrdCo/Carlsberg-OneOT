@@ -123,6 +123,65 @@
     document.getElementById("site-counter").textContent = `${GLOBE_SITES.length} sites · ${operational} operational`;
   }
 
+  // Search
+  const searchInput = document.getElementById("search-input");
+  const searchResults = document.getElementById("search-results");
+  const searchClear = document.getElementById("search-clear");
+
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.trim().toLowerCase();
+    searchClear.classList.toggle("hidden", q.length === 0);
+
+    if (q.length === 0) {
+      searchResults.classList.add("hidden");
+      return;
+    }
+
+    const matches = GLOBE_SITES.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      (s.country && s.country.toLowerCase().includes(q)) ||
+      (s.cluster && s.cluster.toLowerCase().includes(q)) ||
+      (s.region && s.region.toLowerCase().includes(q))
+    ).slice(0, 12);
+
+    if (matches.length === 0) {
+      searchResults.innerHTML = '<li class="search-no-results">No results found</li>';
+    } else {
+      searchResults.innerHTML = matches.map(s => `
+        <li class="search-result-item" data-id="${s.id}">
+          <span class="search-result-name">${s.name}</span>
+          <span class="search-result-meta">${s.country || ""} · ${s.region}</span>
+        </li>
+      `).join("");
+    }
+    searchResults.classList.remove("hidden");
+  });
+
+  searchResults.addEventListener("click", (e) => {
+    const item = e.target.closest(".search-result-item");
+    if (!item) return;
+    const site = GLOBE_SITES.find(s => s.id === Number(item.dataset.id));
+    if (!site) return;
+    searchInput.value = "";
+    searchResults.classList.add("hidden");
+    searchClear.classList.add("hidden");
+    searchInput.blur();
+    handleSiteClick(site);
+  });
+
+  searchClear.addEventListener("click", () => {
+    searchInput.value = "";
+    searchResults.classList.add("hidden");
+    searchClear.classList.add("hidden");
+    searchInput.blur();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!document.getElementById("search-container").contains(e.target)) {
+      searchResults.classList.add("hidden");
+    }
+  });
+
   // Handle window resize
   window.addEventListener("resize", () => {
     globe.width(window.innerWidth);
