@@ -6,6 +6,10 @@
 
   const container = document.getElementById("globe-container");
 
+  let loadingFallbackTimer = setTimeout(() => {
+    document.getElementById("loading-screen").classList.add("hidden");
+  }, 45000);
+
   const globe = Globe()
     .globeImageUrl(EARTH_TEXTURE)
     .backgroundImageUrl(BG_TEXTURE)
@@ -19,6 +23,10 @@
     .pointLabel(d => `<div class="site-label">${d.name}<br><span style="opacity:0.7;font-size:10px">${d.country || ""} · ${d.mes || ""}</span></div>`)
     .pointsMerge(false)
     .onPointClick(handleSiteClick)
+    .onGlobeReady(() => {
+      clearTimeout(loadingFallbackTimer);
+      document.getElementById("loading-screen").classList.add("hidden");
+    })
     .enablePointerInteraction(true)(container);
 
   window._globe = globe;
@@ -191,16 +199,6 @@
     globe.width(window.innerWidth);
     globe.height(window.innerHeight);
   });
-
-  // Loading screen — wait for globe texture to load
-  const textureCheck = setInterval(() => {
-    const canvas = container.querySelector("canvas");
-    if (canvas) {
-      clearInterval(textureCheck);
-      setTimeout(() => document.getElementById("loading-screen").classList.add("hidden"), 800);
-    }
-  }, 300);
-  setTimeout(() => document.getElementById("loading-screen").classList.add("hidden"), 8000);
 
   // Stop auto-rotate when user interacts
   container.addEventListener("mousedown", () => {
