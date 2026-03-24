@@ -88,8 +88,11 @@
     closePanel();
   });
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts (ignore when typing in search)
   document.addEventListener("keydown", (e) => {
+    const tag = e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+
     if (e.key === "Escape") {
       if (panelOpen) closePanel();
       if (tourActive) stopTour();
