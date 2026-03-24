@@ -52,13 +52,17 @@ html, body {
   background: var(--border); border-radius: 3px;
   overflow: hidden; margin: 0 auto;
 }
+/* Indeterminate: fixed-duration fill looked empty when globe became ready in <2s */
 .loader-bar-fill {
-  width: 0%; height: 100%;
+  width: 38%; height: 100%;
   background: var(--carlsberg-green-light);
   border-radius: 3px;
-  animation: loader-fill 2s ease-in-out forwards;
+  animation: loader-slide 1.35s ease-in-out infinite alternate;
 }
-@keyframes loader-fill { to { width: 100%; } }
+@keyframes loader-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(163%); }
+}
 
 /* === Header === */
 #app-header {
