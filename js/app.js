@@ -1,7 +1,7 @@
 // Main application — Globe initialization and event wiring
 
 (function () {
-  const EARTH_TEXTURE = "https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144898/BlackMarble_2016_3km.jpg";
+  const EARTH_TEXTURE = "assets/earth-night.jpg";
   const BG_TEXTURE = "https://unpkg.com/three-globe@2.35.1/example/img/night-sky.png";
 
   const container = document.getElementById("globe-container");
