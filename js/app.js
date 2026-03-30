@@ -1,7 +1,7 @@
 // Main application — Globe initialization and event wiring
 
 (function () {
-  const EARTH_TEXTURE = "assets/earth-blue-marble.jpg";
+  const EARTH_TEXTURE = "assets/earth-blue-marble.jpg?v=2";
 
   const container = document.getElementById("globe-container");
 
