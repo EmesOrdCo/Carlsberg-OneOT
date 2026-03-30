@@ -8,9 +8,9 @@ const VIEW_CONFIGS = {
         "Asia": "#E8A838",
         "CEEI": "#3ABDB5",
         "WE": "#00B050",
-        "-": "#444444"
+        "-": "#999999"
       };
-      return map[site.region] || "#444444";
+      return map[site.region] || "#999999";
     },
     legend: [
       { label: "Asia", color: "#E8A838" },
@@ -29,7 +29,7 @@ const VIEW_CONFIGS = {
         "Lineview": "#9B72CB",
         "LV": "#9B72CB",
       };
-      return map[site.mes] || "#444444";
+      return map[site.mes] || "#999999";
     },
     legend: [
       { label: "MES Full", color: "#00B050" },
@@ -43,7 +43,7 @@ const VIEW_CONFIGS = {
     title: "Deployment Year (TilliT)",
     getColor: (site) => {
       const y = site.tilliT.year;
-      if (y >= 2040) return "#333333";
+      if (y >= 2040) return "#aaaaaa";
       if (y <= 2025) return "#00B050";
       if (y === 2026) return "#7BC67E";
       if (y === 2027) return "#E8A838";
@@ -56,7 +56,7 @@ const VIEW_CONFIGS = {
       { label: "2027", color: "#E8A838" },
       { label: "2028", color: "#E07830" },
       { label: "2029+", color: "#D04040" },
-      { label: "TBD", color: "#333333" },
+      { label: "TBD", color: "#aaaaaa" },
     ]
   }
 };

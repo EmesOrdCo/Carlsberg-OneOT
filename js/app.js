@@ -1,8 +1,7 @@
 // Main application — Globe initialization and event wiring
 
 (function () {
-  const EARTH_TEXTURE = "assets/earth-night.jpg";
-  const BG_TEXTURE = "https://unpkg.com/three-globe@2.35.1/example/img/night-sky.png";
+  const EARTH_TEXTURE = "assets/earth-blue-marble.jpg";
 
   const container = document.getElementById("globe-container");
 
@@ -12,7 +11,7 @@
 
   const globe = Globe()
     .globeImageUrl(EARTH_TEXTURE)
-    .backgroundImageUrl(BG_TEXTURE)
+    .backgroundColor("#f5f5f5")
     .atmosphereColor("#00753A")
     .atmosphereAltitude(0.2)
     .pointOfView({ lat: 30, lng: 20, altitude: 2.5 })
